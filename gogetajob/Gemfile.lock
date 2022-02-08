@@ -181,6 +181,9 @@ GEM
     msgpack (1.4.4)
     multi_json (1.15.0)
     nenv (0.3.0)
+    net-http (0.2.0)
+      net-protocol
+      uri
     net-imap (0.2.3)
       digest
       net-protocol
@@ -307,6 +310,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -342,6 +346,7 @@ DEPENDENCIES
   jbuilder
   listen (>= 3.0.5, < 3.2)
   mini_magick (~> 4.5, >= 4.5.1)
+  net-http
   puma (~> 5.0)
   rails (~> 7.0.1)
   sass-rails (~> 5.1.0)

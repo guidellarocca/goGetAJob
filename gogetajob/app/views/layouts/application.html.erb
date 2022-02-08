@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', "https://js.stripe.com/v2/", "https://js.stripe.com/v3/", 'data-turbolinks-track': 'reload' %>
+
+    <%= tag :meta, name: "stripe-public-key", content: Figaro.env.stripe_publishable_key %>
+  
   </head>
 
   <body class="<%= yield (:body_class) %>">
@@ -25,7 +29,7 @@
      <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class:"navbar-item" do %>
-          <h1 class="title is-5"><%= Rails.configuration.application_name %></h1>
+          <h1 class="title is-5"><%= Rails.configuration.application_name %></h1> 
         <% end  %>
         <div class="navbar-burger burger" data-target="navbar">
           <span></span>
@@ -38,6 +42,9 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
+            <p class="control">
+              <%= link_to "Post Job", new_job_path, class: "navbar-item button is-primary is-rounded" %>
+            </p>
             <% if user_signed_in? %>
 
               <div class="navbar-item has-dropdown is-hoverable">
