@@ -6,7 +6,12 @@ class JobsController < ApplicationController
 
   # GET /jobs or /jobs.json
   def index
-    @jobs = Job.all.order("created_at desc")
+    # filter job_type and ordering them by "created_at" descending
+    if(params.has_key?(:job_type))
+      @jobs = Job.where(job_type: params[:job_type]).order("created_at desc")
+    else
+      @jobs = Job.all.order("created_at desc")
+    end
   end
 
   # GET /jobs/1 or /jobs/1.json
