@@ -15,8 +15,14 @@
     <div class="content text-serif f4">
       <%= @job.description.html_safe %>
     </div>
-
-    <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
+    
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
+      <% else %>
+        <u> <b>NOTICE:</b> To apply for this job you must <%= link_to "Sign In", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> !</u>
+      <% end %>
+    </div>
 
   </div>
 
@@ -34,7 +40,11 @@
     <% end %>
     </div>
 
-    <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
+
+    <% if user_signed_in? %>
+      <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
+    <% end %>
+    
     <% if current_user.try(:admin) || job_author(@job) %>
       <ul class="pv3">
         <li class="pv1 f6">Admin controls: </li>
