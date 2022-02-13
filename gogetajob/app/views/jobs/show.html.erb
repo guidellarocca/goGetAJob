@@ -42,11 +42,6 @@
     <% end %>
     </div>
 
-
-    <% if user_signed_in? && current_user.user_type == "Employee"%>
-      <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
-    <% end %>
-    
     <% if current_user.try(:admin) || job_author(@job) %>
       <ul class="pv3">
         <li class="pv1 f6">Admin controls: </li>
@@ -58,5 +53,15 @@
           <%= link_to 'Delete', @job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-link is-outlined' %></li>
       </ul>
     <% end %>
+
+    <% if user_signed_in? && current_user.user_type == "Employee"%>
+      <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
+    <hr/>
+      <%- unless current_user.favorite_jobs.exists?(id: @job.id) -%>
+          <%= link_to favorite_jobs_path(job_id: @job), class: "button is-ghost", method: :post do %><ion-icon name="star-outline" style="font-size: 20px; color: blue"></ion-icon>&nbsp;Add to favorites<% end %>
+      <%- else -%>
+        <%= link_to favorite_job_path(@job), class: "button is-ghost", method: :delete do %><ion-icon name="star" style="font-size: 20px; color: blue"></ion-icon>&nbsp;Remove from favorites<% end %>
+      <%- end -%>
+    <%- end %>
   </div>
 </div>

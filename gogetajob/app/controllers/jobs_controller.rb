@@ -14,6 +14,10 @@ class JobsController < ApplicationController
     end
   end
 
+  def favorites
+    @jobs = current_user.favorite_jobs
+  end
+
   # GET /jobs/1 or /jobs/1.json
   def show
   end

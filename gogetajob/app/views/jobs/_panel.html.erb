@@ -21,5 +21,11 @@
     <li class="pv1">
       <%= link_to 'Contract', jobs_path(job_type: "Contract"), class: "button is-fullwidth is-info" %>
     </li>
+    <% if user_signed_in? && current_user.user_type == "Employee" %>
+        <br>
+        <li class="pv1">
+          <%= link_to favorite_jobs_path, class: "button is-fullwidth is-warning is-light" do %><ion-icon name="star-outline" style="font-size: 20px; color: black"></ion-icon>   Favorites<% end %>
+        </li>
+    <% end %>
   </ul>
 </nav>

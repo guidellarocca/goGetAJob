@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github, :google_oauth2]
   has_many :jobs
+  has_many :favorites
+  has_many :favorite_jobs, through: :favorites, source: :favorited, source_type: 'Job'
 
   USER_TYPES = ["Company", "Employee"]
 
