@@ -65,12 +65,27 @@
     <%- end %>
     <% if @job.fans.size != 0 %>
       <hr />
-      <span class="icon-text">
-        <span class="icon">
-          <ion-icon name="star" style="font-size: 20px; color: blue"></ion-icon>
-        </span>
-        <span><%= @job.fans.size %> following this job</span>
-      </span>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Following</p>
+          <p class="title"><%= @job.fans.size %></p>
+        </div>
+      </div>
     <% end %>
+    <br>
+    <% if user_signed_in? && job_author(@job) %>
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <h5 class="pv1 f8"><ion-icon name="stats-chart" style="font-size: 20px; color: #00c4a7"></ion-icon> &nbsp;Users following this job:</h5>
+            <hr />
+            <% @job.fans.each do |fan| %>
+              <%= mail_to fan.email, class: "button is-ghost" do %><%= fan.name %>&nbsp; | &nbsp; <ion-icon name="mail"></ion-icon><% end %>
+          </div>
+        </div>
+            <% end %>
+    <% end %>
+
+    </div>
   </div>
 </div>

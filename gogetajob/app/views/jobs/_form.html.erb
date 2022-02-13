@@ -59,7 +59,7 @@
 
       <div class="field column">
         <div class="control">
-          <%= f.input :job_author, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" }, label: "Company" %>
+          <%= f.input :job_author, required: true, input_html: { class: "input", value: current_user.name }, wrapper: false, label_html: { class: "label" }, label: "Company" %>
         </div>
       </div>
 
