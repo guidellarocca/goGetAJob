@@ -12,6 +12,7 @@ user = User.new(
     email: "andy@example.com",
     password: "password",
     password_confirmation: "password"
+    user_type: "Company"
   )
   user.save!
   

@@ -18,9 +18,11 @@
     
     <div>
       <% if user_signed_in? %>
-        <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
+        <% if current_user.user_type == "Employee"%>
+          <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-large is-fullwidth is-link" %>
+        <% end %>
       <% else %>
-        <u> <b>NOTICE:</b> To apply for this job you must <%= link_to "Sign In", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> !</u>
+        <u> <b>NOTICE:</b> If you're looking for a job and wanted to apply for this job you must <%= link_to "Sign In", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %> !</u>
       <% end %>
     </div>
 
@@ -41,7 +43,7 @@
     </div>
 
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.user_type == "Employee"%>
       <%= link_to 'Apply to this job', @job.apply_url, class:"button is-rounded is-fullwidth is-link" %>
     <% end %>
     

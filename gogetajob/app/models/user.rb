@@ -6,6 +6,10 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:github, :google_oauth2]
   has_many :jobs
 
+  USER_TYPES = ["Company", "Employee"]
+
+  validates_presence_of :user_type
+
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       user.name = provider_data.info.name
