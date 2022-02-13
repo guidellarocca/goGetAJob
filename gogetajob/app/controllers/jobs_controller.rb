@@ -9,6 +9,8 @@ class JobsController < ApplicationController
     # filter job_type and ordering them by "created_at" descending
     if(params.has_key?(:job_type))
       @jobs = Job.where(job_type: params[:job_type]).order("created_at desc")
+    elsif(params.has_key?(:user_id))
+      @jobs = Job.where(user_id: params[:user_id]).order("created_at desc")
     else
       @jobs = Job.all.order("created_at desc")
     end

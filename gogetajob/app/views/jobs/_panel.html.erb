@@ -27,5 +27,11 @@
           <%= link_to favorite_jobs_path, class: "button is-fullwidth is-warning is-light" do %><ion-icon name="star-outline" style="font-size: 20px; color: black"></ion-icon>   Favorites<% end %>
         </li>
     <% end %>
+    <% if user_signed_in? && current_user.user_type == "Company" %>
+      <br>
+      <li class="pv1">
+        <%= link_to jobs_path(user_id: current_user.id), class: "button is-fullwidth is-warning is-light" do %>Your Jobs<% end %>
+      </li>
+    <% end %>
   </ul>
 </nav>
