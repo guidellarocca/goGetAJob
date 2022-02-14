@@ -13,7 +13,7 @@ module Gogetajob
     config.application_name = "GoGetAJob"
     
     
-    config.load_defaults 7.0
+    config.load_defaults 6.0
 
     # Configuration for the application, engines, and railties goes here.
     #
