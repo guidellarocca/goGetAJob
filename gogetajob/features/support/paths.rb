@@ -41,6 +41,9 @@ module NavigationHelpers
     when /^the Favorites\s?page$/
       '/favorite_jobs'
 
+    when /^the Edit\s?page$/
+      '/jobs/1/edit'
+
       # Add more mappings here.
       # Here is an example that pulls values out of the Regexp:
       #
