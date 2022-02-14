@@ -23,11 +23,13 @@
           <%= sanitize(job.description.truncate(200, separator: '</p>')) %>
         </div>
 
-        <% if current_user.try(:admin) || job_author(job) %>
+
           <ul class="pv3">
-            <li class="inline-block f6">Admin controls: </li>
+
             <li class="inline-block">
               <%= link_to 'View', job, class: 'button is-small is-link is-outlined' %></li>
+            <% if current_user.try(:admin) || job_author(job) %>
+              <li class="inline-block f6">Admin controls: </li>
             <li class="inline-block">
               <%= link_to 'Edit', edit_job_path(job), class: 'button is-small is-link is-outlined' %></li>
             <li class="inline-block">
