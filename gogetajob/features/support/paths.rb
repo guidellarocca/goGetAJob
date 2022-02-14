@@ -28,14 +28,15 @@ module NavigationHelpers
     when /^the Jobs\s?page$/
       jobs_path
 
+    when /^the All\s?page$/
+      jobs_path
+
     when /^the View\s?page$/
       '/jobs#show'
 
     when /^the Job\s?page$/
       '/jobs/1'
 
-    when /^the Favorite\s?page$/
-      favorite_jobs_path(job_id: 1)
 
     when /^the Favorites\s?page$/
       '/favorite_jobs'

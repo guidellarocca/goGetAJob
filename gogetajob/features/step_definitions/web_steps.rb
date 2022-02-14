@@ -70,15 +70,16 @@ When /^(.*?) inside the (.*?) frame$/ do |step_text, frame_id|
 end
 
 Given('a company') do
-  @user = User.create(name: "EVIL CORP", email:"evilcorp@mail.com", password:"password", password_confirmation:"password", user_type:"Company")
+  @company = User.create(name: "EVIL CORP", email:"evilcorp@mail.com", password:"password", password_confirmation:"password", user_type:"Company")
 end
 
 Given('an employee') do
-  @user = User.create(name: "Elliott Alderson", email:"mrrobot@mail.com", password:"password", password_confirmation:"password", user_type:"Employee")
+  @employee = User.create(name: "Elliott Alderson", email:"mrrobot@mail.com", password:"password", password_confirmation:"password", user_type:"Employee")
 end
 
 Given('a job') do
-  @job = Job.create(title: "FrontEnd developer",
+  @job = Job.create(user_id: @company.id,
+                    title: "FrontEnd developer",
                     apply_url: "http://twitter/apply",
                     job_type: "Freelance",
                     location: "San Francisco",
