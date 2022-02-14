@@ -71,7 +71,7 @@
           <p class="title"><%= @job.fans.size %></p>
         </div>
       </div>
-    <% end %>
+
     <br>
     <% if user_signed_in? && job_author(@job) %>
       <div class="card">
@@ -84,6 +84,7 @@
           </div>
         </div>
             <% end %>
+    <% end %>
     <% end %>
 
     </div>

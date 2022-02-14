@@ -1,74 +1,124 @@
-<div class="section">
-  <div class="container">
-  <div class="columns is-centered">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
 
-    <div class="column is-4">
-
-    <h2 class="title is-2">Sign Up</h2>
-
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
+    $('document').ready(function(){
+        $('#CompanyCont').css('opacity', '0.1');
+    });
 
 
+    $(function(){
+      $("#CompanyBtn").click(function(){
+          $('input[id=user_user_type]').val("Company");
+          $('#EmplCont').css('opacity', '0.1');
+          $('#CompanyCont').css('opacity', '100%');
+      });
 
+      $("#EmployeeBtn").click(function () {
+          $('input[id=user_user_type]').val("Employee");
+          $('#CompanyCont').css('opacity', '0.1');
+          $('#EmplCont').css('opacity', '100%');
+      });
+    });
 
-    <p>Before everything else let us know</p>
-    <div class="field column">
-        <div class="control">
-          <label class="label">User Type:</label>
-          <div class="control has-icons-left">
-            <span class="select">
-              <%= f.input_field :user_type, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, collection: User::USER_TYPES, prompt: "Select a user type" %>
-            </span>
-            <span class="icon is-small is-left">
-              <i class="fa fa-briefcase"></i>
-            </span>
+    $(function(){
+        if ($('#user_user_type').val() == 'Company'){
+
+        }
+        else {
+
+        }
+    });
+
+</script>
+<div class="card">
+  <div class="card-content">
+    <div class="content">
+      <div class="columns is-centered">
+
+        <div class="column is-4">
+          <div class="content has-text-centered">
+            <h2 class="title is-2">Sign Up</h2>
           </div>
+
+
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+
+
+            <div class="field" id="user_type" hidden="true">
+
+              <%= f.label :user_type %><br />
+              <%= f.text_field :user_type, autofocus: true, class: 'form-control', hidden: true %>
+            </div>
+            <div class="content has-text-centered">
+              <p class="title is-6 is-centered">Before everything else let us know</p>
+            </div>
+
+            <div class="columns">
+              <div class="column">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="content" id="CompanyCont">
+                      <p class="title is-5">Offering jobs</p>
+                      <p>If you're a Company or a Private looking for new employees you can sign up as Company and make your job visible just paying $50 for 30-days!</p>
+                      <p class="button is-primary is-regular" id="CompanyBtn" title="Company">Company</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="content" id="EmplCont">
+                      <p class="title is-5">Searching jobs</p>
+                      <p>If you're a looking for jobs you should sign up now as Employee! In goGetAJob you can navigate through job offers from rated companies and apply to them!</p>
+                      <p class="button is-primary is-regular" id="EmployeeBtn" title="Employee">Employee</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>Select one of the two types of Account, the currently selected is the one shown not obscured</p>
+            <br/>
+            <br/>
+
+            <div class="field">
+              <div class="control">
+                <%= f.input :name, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <%= f.input :email, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <%= f.input :password, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <%= f.input :password_confirmation, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+              </div>
+            </div>
+
+            <br/>
+
+            <div class="field is-grouped is-grouped-centered">
+              <div class="control">
+                <%= f.button :submit, "Sign up", class:"button is-primary is-medium" %>
+              </div>
+            </div>
+
+          <% end %>
+          <br />
+          <%= render "devise/shared/links" %>
         </div>
       </div>
-
-    <br/>
-    <hr/>
-    <br/>
-
-
-
-    <div class="field">
-      <div class="control">
-      <%= f.input :name, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="control">
-      <%= f.input :email, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="control">
-        <%= f.input :password, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="control">
-        <%= f.input :password_confirmation, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
-      </div>
-    </div>
-
-    <br/>
-
-    <div class="field">
-      <div class="control">
-        <%= f.button :submit, "Sign up", class:"button is-primary is-medium" %>
-      </div>
-    </div>
-
-    <% end %>
-      <br />
-      <%= render "devise/shared/links" %>
-    </div>
     </div>
   </div>
 </div>
